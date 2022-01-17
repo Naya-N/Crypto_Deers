@@ -2,5 +2,5 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
-  publicPath: '/newdeers/'
+  // publicPath: '/Crypto_Deers/'
 }
