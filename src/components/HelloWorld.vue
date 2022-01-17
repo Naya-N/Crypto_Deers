@@ -23,15 +23,14 @@
       </v-col>
 
       <v-col
-        class="mb-5"
+        class="mb-5 pl-md-6 col-12 col-sm-6"
         style="display: flex; justify-content: flex-end"
-        cols="6"
       >
         <v-card
           :loading="loading"
-          class="mr-12"
+          class="mr-md-12"
           style="border-radius: 10%"
-          max-height="450px"
+          min-width="250px"
           max-width="450px"
         >
           <template slot="progress">
@@ -42,17 +41,12 @@
             ></v-progress-linear>
           </template>
 
-          <v-img
-            min-height="250"
-            max-height="450px"
-            :src="require('../assets/cd.gif')"
-          ></v-img>
+          <v-img min-height="250" :src="require('../assets/cd.gif')"></v-img>
         </v-card>
       </v-col>
 
       <v-col
-        class="mb-5 pt-12"
-        cols="6"
+        class="mb-5 pt-12 col-12 col-sm-6"
         style="
           display: flex;
           justify-content: flex-start;
