@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
-      color="primary"
       dark
     >
       <div class="d-flex align-center">
@@ -35,19 +34,69 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
+    <v-app-bar
+      absolute
+      color="#6A76AB"
+      dark
+      shrink-on-scroll
+      prominent
+      :src="require('./assets/Baner2.png')"
+      fade-img-on-scroll
+      scroll-target="#scrolling-techniques-3"
+    >
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(100,115,201,.4), rgba(25,32,72,.4)"
+        ></v-img>
+      </template>
 
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+      <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+      <!-- <div style="font-size: 40px; font-weight: bold">Crypto_Deers</div> -->
+      <!-- <v-app-bar-title>Title</v-app-bar-title> -->
+
+      <!-- <v-spacer></v-spacer> -->
+
+      <!-- <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn> -->
+
+      <template v-slot:extension>
+        <v-tabs right color="#fff">
+          <v-tab>Home</v-tab>
+          <v-tab>About</v-tab>
+          <v-tab>Rarity</v-tab>
+          <v-tab>Creator</v-tab>
+        </v-tabs>
+      </template>
+    </v-app-bar>
+    <v-sheet
+      id="scrolling-techniques-3"
+      class="overflow-y-auto"
+      max-height="100vh"
+      min-height="100vh"
+    >
+      <v-main>
+        <HelloWorld />
+      </v-main>
+    </v-sheet>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import HelloWorld from "./components/HelloWorld";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     HelloWorld,
@@ -56,5 +105,6 @@ export default {
   data: () => ({
     //
   }),
+  methods: {},
 };
 </script>

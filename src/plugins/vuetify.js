@@ -14,10 +14,13 @@ export default new Vuetify({
         iconfont: 'mdi',
     },
     theme: {
+        dark: true,
+
         options: {
             customProperties: true,
         },
         themes: {
+
             light: {
                 primary: '#3f51b5',
                 secondary: '#b0bec5',

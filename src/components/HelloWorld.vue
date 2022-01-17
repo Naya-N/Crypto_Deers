@@ -10,142 +10,142 @@
         />
       </v-col>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
+      <v-col class="mb-4 col-12">
+        <h1 class="display-2 font-weight-bold mb-3">Welcome to Crypto_Deers</h1>
 
         <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
+          Crypto_Deers is a collection of 10 000 unique deers
+          <br />who live on the metaverse
+          <!-- <a href="https://community.vuetifyjs.com" target="_blank"
+            >Discord Community</a
+          > -->
         </p>
       </v-col>
 
       <v-col
         class="mb-5"
-        cols="12"
+        style="display: flex; justify-content: flex-end"
+        cols="6"
       >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
+        <v-card
+          :loading="loading"
+          class="mr-12"
+          style="border-radius: 10%"
+          max-height="450px"
+          max-width="450px"
+        >
+          <template slot="progress">
+            <v-progress-linear
+              color="deep-purple"
+              height="10"
+              indeterminate
+            ></v-progress-linear>
+          </template>
 
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
+          <v-img
+            min-height="250"
+            max-height="450px"
+            :src="require('../assets/cd.gif')"
+          ></v-img>
+        </v-card>
       </v-col>
 
       <v-col
-        class="mb-5"
-        cols="12"
+        class="mb-5 pt-12"
+        cols="6"
+        style="
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+        "
       >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
+        <div style="max-width: 450px">
+          <h2 class="headline font-weight-bold mb-3">
+            Site under construction
+          </h2>
+          <p class="mt-12">
+            But you can look at the information about the collection at
+          </p>
+          <a href="https://opensea.io/collection/crypto-deers">
+            <img
+              height="40"
+              :src="require('../assets/os2.svg')"
+              alt="OpenSea"
+            />
           </a>
-        </v-row>
-      </v-col>
+        </div>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
+        <div class="mt-16" style="max-width: 450px">
+          <p>you can also follow all the news on Twitter</p>
           <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
+            href="https://twitter.com/Naya_N__?ref_src=twsrc%5Etfw"
+            class="twitter-follow-button"
+            data-size="large"
+            data-show-screen-name="false"
+            data-show-count="false"
+            >Follow @Naya_N__</a
           >
-            {{ eco.text }}
-          </a>
-        </v-row>
+        </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
+export default {
+  name: "HelloWorld",
 
-    data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
-  }
+  data: () => ({
+    ecosystem: [
+      {
+        text: "vuetify-loader",
+        href: "https://github.com/vuetifyjs/vuetify-loader",
+      },
+      {
+        text: "github",
+        href: "https://github.com/vuetifyjs/vuetify",
+      },
+      {
+        text: "awesome-vuetify",
+        href: "https://github.com/vuetifyjs/awesome-vuetify",
+      },
+    ],
+    importantLinks: [
+      {
+        text: "Documentation",
+        href: "https://vuetifyjs.com",
+      },
+      {
+        text: "Chat",
+        href: "https://community.vuetifyjs.com",
+      },
+      {
+        text: "Made with Vuetify",
+        href: "https://madewithvuejs.com/vuetify",
+      },
+      {
+        text: "Twitter",
+        href: "https://twitter.com/vuetifyjs",
+      },
+      {
+        text: "Articles",
+        href: "https://medium.com/vuetify",
+      },
+    ],
+    whatsNext: [
+      {
+        text: "Explore components",
+        href: "https://vuetifyjs.com/components/api-explorer",
+      },
+      {
+        text: "Select a layout",
+        href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
+      },
+      {
+        text: "Frequently Asked Questions",
+        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions",
+      },
+    ],
+  }),
+};
 </script>
