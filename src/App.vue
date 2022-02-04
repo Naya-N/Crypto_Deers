@@ -45,12 +45,12 @@
       fade-img-on-scroll
       scroll-target="#scrolling-techniques-3"
       class="menu"
-      height="300px"
+      height="250px"
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(100,115,201,.4), rgba(25,32,72,.4)"
+          gradient="to bottom right, rgba(100,115,201,.25), rgba(25,32,72,.8)"
         >
         </v-img>
       </template>
@@ -107,10 +107,115 @@
         v-scroll:#scrolling-techniques-3="onScroll"
       >
         <v-row ref="home" id="home" class="text-center ma-0">
-          <v-col class="mb-4 col-12" style="margin-top: 260px">
-            <h1 class="display-2 font-weight-bold mb-3">
-              Welcome to Crypto_Deers
-            </h1>
+          <v-col class="mb-4 col-12" style="margin-top: 180px"> </v-col>
+
+          <v-col
+            class="mb-5 pl-md-6 col-12 col-sm-6"
+            style="display: flex; justify-content: flex-end"
+          >
+            <v-card
+              flat
+              :loading="loading"
+              class="mr-md-12 rotate"
+              style="border-radius: 10%; position: relative"
+              min-width="250px"
+              max-width="650px"
+            >
+              <template slot="progress">
+                <v-progress-linear
+                  color="deep-purple"
+                  height="10"
+                  indeterminate
+                ></v-progress-linear>
+              </template>
+
+              <a
+                href="https://opensea.io/collection/crypto-deers"
+                target="_blank"
+                class="pa-10 msg"
+                style="
+                  position: absolute;
+                  top: 50%;
+                  right: 0;
+                  z-index: 6;
+                  color: #fff;
+                  border: 2px dashed #fff;
+                  border-radius: 50%;
+                "
+              >
+                Купи Олешку
+              </a>
+
+              <v-img min-height="250" :src="require(`./assets/first/${gl}`)">
+                <v-img
+                  style="position: absolute; top: 0; left: 0; z-index: 1"
+                  min-height="250"
+                  :src="require(`./assets/first/deer1.svg`)"
+                ></v-img>
+                <v-img
+                  style="position: relative; z-index: 5"
+                  min-height="250"
+                  :src="require(`./assets/first/${img}.svg`)"
+                ></v-img>
+              </v-img>
+            </v-card>
+          </v-col>
+
+          <v-col
+            class="mb-5 pt-12 col-12 col-sm-6"
+            style="
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+            "
+          >
+            <div style="max-width: 650px">
+              <h1 class="display-2 font-weight-bold mb-3">
+                Welcome to Crypto_Deers
+              </h1>
+
+              <p class="subheading font-weight-regular">
+                Crypto_Deers is a collection of 10 000 unique deers
+                <br />who live on the metaverse
+                <!-- <a href="https://community.vuetifyjs.com" target="_blank"
+            >Discord Community</a
+          > -->
+              </p>
+            </div>
+            <div style="max-width: 650px">
+              <p class="mt-12">
+                But you can look at the information about the collection at
+              </p>
+              <a
+                href="https://opensea.io/collection/crypto-deers"
+                target="_blank"
+              >
+                <img
+                  height="40"
+                  :src="require('./assets/os2.svg')"
+                  alt="OpenSea"
+                />
+              </a>
+            </div>
+
+            <div class="mt-5" style="max-width: 650px">
+              <a
+                href="https://twitter.com/Naya_N__?ref_src=twsrc%5Etfw"
+                class="twitter-follow-button"
+                data-size="large"
+                data-show-screen-name="false"
+                data-show-count="false"
+                >Follow @Naya_N__</a
+              >
+            </div>
+          </v-col>
+        </v-row>
+        <v-row ref="about" id="about" class="ma-0">
+          <v-col
+            class="mb-4 col-12"
+            style="margin-bottom: 260px; margin-top: 100px"
+          >
+            <h2 class="display-2 font-weight-bold mb-3">About</h2>
 
             <p class="subheading font-weight-regular">
               Crypto_Deers is a collection of 10 000 unique deers
@@ -120,7 +225,38 @@
           > -->
             </p>
           </v-col>
+        </v-row>
+        <v-row ref="rarity" id="rarity" class="ma-0">
+          <v-col
+            class="mb-4 col-12"
+            style="margin-bottom: 260px; margin-top: 100px"
+          >
+            <h2 class="display-2 font-weight-bold mb-3">Rarity</h2>
 
+            <p class="subheading font-weight-regular">
+              Crypto_Deers is a collection of 10 000 unique deers
+              <br />who live on the metaverse
+              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
+            >Discord Community</a
+          > -->
+            </p>
+          </v-col>
+        </v-row>
+        <v-row ref="creator" id="creator" class="ma-0">
+          <v-col
+            class="mb-4 col-12"
+            style="margin-bottom: 260px; margin-top: 100px"
+          >
+            <h2 class="display-2 font-weight-bold mb-3">Creator</h2>
+
+            <p class="subheading font-weight-regular">
+              Crypto_Deers is a collection of 10 000 unique deers
+              <br />who live on the metaverse
+              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
+            >Discord Community</a
+          > -->
+            </p>
+          </v-col>
           <v-col
             class="mb-5 pl-md-6 col-12 col-sm-6"
             style="display: flex; justify-content: flex-end"
@@ -181,54 +317,6 @@
             </div>
           </v-col>
         </v-row>
-        <v-row ref="about" id="about" class="ma-0">
-          <v-col
-            class="mb-4 col-12"
-            style="margin-bottom: 260px; margin-top: 100px"
-          >
-            <h2 class="display-2 font-weight-bold mb-3">About</h2>
-
-            <p class="subheading font-weight-regular">
-              Crypto_Deers is a collection of 10 000 unique deers
-              <br />who live on the metaverse
-              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-            </p>
-          </v-col>
-        </v-row>
-        <v-row ref="rarity" id="rarity" class="ma-0">
-          <v-col
-            class="mb-4 col-12"
-            style="margin-bottom: 260px; margin-top: 100px"
-          >
-            <h2 class="display-2 font-weight-bold mb-3">Rarity</h2>
-
-            <p class="subheading font-weight-regular">
-              Crypto_Deers is a collection of 10 000 unique deers
-              <br />who live on the metaverse
-              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-            </p>
-          </v-col>
-        </v-row>
-        <v-row ref="creator" id="creator" class="ma-0">
-          <v-col
-            class="mb-4 col-12"
-            style="margin-bottom: 260px; margin-top: 100px"
-          >
-            <h2 class="display-2 font-weight-bold mb-3">Creator</h2>
-
-            <p class="subheading font-weight-regular">
-              Crypto_Deers is a collection of 10 000 unique deers
-              <br />who live on the metaverse
-              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-            </p>
-          </v-col>
-        </v-row>
       </v-container>
 
       <!-- <v-main>
@@ -249,6 +337,37 @@ export default {
   },
 
   data: () => ({
+    img: "deer",
+    gl: "notGl.png",
+    glithes: ["gl3", "gl2", "gl", "gl1"],
+    deers: [
+      "deer",
+      "deer1",
+      "deer2",
+      "deer3",
+      "deer4",
+      "deer5",
+      "deer6",
+      "deer7",
+      "deer8",
+      "deer9",
+      "deer10",
+      "deer",
+      "deer1",
+      "deer2",
+      "deer3",
+      "deer4",
+      "deer5",
+      "deer6",
+      "deer7",
+      "deer8",
+      "deer9",
+      "deer10",
+    ],
+    count: 0,
+    images: 22,
+    isChangeDeer: false,
+
     loading: false,
 
     tab: 0,
@@ -260,7 +379,9 @@ export default {
 
     offsetTop: 0,
   }),
-  created() {},
+  created() {
+    this.changeDeer();
+  },
   mounted() {
     this.home = this.positionSections("home");
     this.about = this.positionSections("about");
@@ -271,8 +392,12 @@ export default {
   methods: {
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
+
       if (this.offsetTop < this.home.bottom) {
         this.tab = 0;
+        if (!this.isChangeDeer) {
+          this.changeDeer();
+        }
       }
       if (
         this.offsetTop > this.about.top &&
@@ -302,6 +427,35 @@ export default {
         bottom: document.getElementById(name).getBoundingClientRect().bottom,
       };
     },
+    changeDeer() {
+      this.isChangeDeer = true;
+      this.count++;
+      this.images--;
+      this.img = this.deers[this.images];
+      this.gl = "notGl.png";
+      if (this.images == 0) {
+        this.images = 22;
+        this.gl = "gl2.svg";
+      }
+      if (this.images == 16) {
+        this.gl = "gl3.svg";
+      }
+      if (this.images == 11) {
+        this.gl = "gl.svg";
+      }
+      if (this.images == 5) {
+        this.gl = "gl1.svg";
+      }
+
+      if (this.tab == 0) {
+        setTimeout(this.changeDeer, 200);
+      } else {
+        this.count = 0;
+        this.images = 22;
+        this.gl = "notGl.png";
+        this.isChangeDeer = false;
+      }
+    },
   },
   watch: {},
 };
@@ -314,9 +468,24 @@ export default {
     align-items: flex-end !important;
   }
 }
+.rotate {
+  -webkit-transition: -webkit-transform 1s ease-out;
+  -moz-transition: -moz-transform 1s ease-out;
+  -o-transition: -o-transform 1s ease-out;
+  -ms-transition: -ms-transform 1s ease-out;
+  transition: all 1s ease-out;
+  .msg {
+    opacity: 0;
+    transition: all 1s ease-out;
+  }
+}
 
-.activeNav {
-  color: #894bcc !important;
-  box-shadow: 0 4px 2px -2px #9c40ff;
+.rotate:hover {
+  -webkit-transform: rotateZ(-5deg);
+  -ms-transform: rotateZ(-5deg);
+  transform: translate(-30px, -20px) rotateZ(-5deg);
+  .msg {
+    opacity: 1;
+  }
 }
 </style>
