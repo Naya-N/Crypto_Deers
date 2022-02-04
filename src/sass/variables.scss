@@ -1,0 +1,66 @@
+@import "~vuetify/src/styles/styles.sass";
+@import "~vuetify/src/components/VStepper/_variables.scss";
+
+html {
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #cecece;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #bcd7f0;
+    }
+}
+
+#app.theme--dark,
+#app.v-application.theme--dark,
+.v-application.theme--dark {
+    ::-webkit-scrollbar-track {
+        background: #1f1f1f;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #101010;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #000;
+    }
+}
+
+#app,
+#app.v-application,
+.v-application {
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #cecece;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #bcd7f0;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+$app-bar-scrolled-title-padding-bottom: 0 !default;
