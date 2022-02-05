@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-resize="onResize">
     <!-- <v-app-bar
       app
       dark
@@ -70,10 +70,10 @@
           height="56px"
           background-color="transparent"
         >
-          <v-tab @click="scrollToSection('home')">Home</v-tab>
-          <v-tab @click="scrollToSection('about')">About</v-tab>
-          <v-tab @click="scrollToSection('rarity')">Rarity</v-tab>
-          <v-tab @click="scrollToSection('creator')">Creator</v-tab>
+          <v-tab @click="scrollToSection('section1')">Home</v-tab>
+          <v-tab @click="scrollToSection('section2')">About</v-tab>
+          <v-tab @click="scrollToSection('section3')">Rarity</v-tab>
+          <v-tab @click="scrollToSection('section4')">Creator</v-tab>
         </v-tabs>
       </v-toolbar-items>
       <!-- </template> -->
@@ -106,312 +106,87 @@
         ref="wrap"
         v-scroll:#scrolling-techniques-3="onScroll"
       >
-        <v-row ref="home" id="home" class="text-center ma-0">
-          <v-col class="mb-4 col-12" style="margin-top: 180px"> </v-col>
-
-          <v-col
-            class="mb-5 pl-md-6 col-12 col-sm-6"
-            style="display: flex; justify-content: flex-end"
-          >
-            <v-card
-              flat
-              :loading="loading"
-              class="mr-md-12 rotate"
-              style="border-radius: 10%; position: relative"
-              min-width="250px"
-              max-width="650px"
-            >
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
-
-              <a
-                href="https://opensea.io/collection/crypto-deers"
-                target="_blank"
-                class="pa-10 msg"
-                style="
-                  position: absolute;
-                  top: 50%;
-                  right: 0;
-                  z-index: 6;
-                  color: #fff;
-                  border: 2px dashed #fff;
-                  border-radius: 50%;
-                "
-              >
-                Купи Олешку
-              </a>
-
-              <v-img min-height="250" :src="require(`./assets/first/${gl}`)">
-                <v-img
-                  style="position: absolute; top: 0; left: 0; z-index: 1"
-                  min-height="250"
-                  :src="require(`./assets/first/deer1.svg`)"
-                ></v-img>
-                <v-img
-                  style="position: relative; z-index: 5"
-                  min-height="250"
-                  :src="require(`./assets/first/${img}.svg`)"
-                ></v-img>
-              </v-img>
-            </v-card>
-          </v-col>
-
-          <v-col
-            class="mb-5 pt-12 col-12 col-sm-6"
-            style="
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-            "
-          >
-            <div style="max-width: 650px">
-              <h1 class="display-2 font-weight-bold mb-3">
-                Welcome to Crypto_Deers
-              </h1>
-
-              <p class="subheading font-weight-regular">
-                Crypto_Deers is a collection of 10 000 unique deers
-                <br />who live on the metaverse
-                <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-              </p>
-            </div>
-            <div style="max-width: 650px">
-              <p class="mt-12">
-                But you can look at the information about the collection at
-              </p>
-              <a
-                href="https://opensea.io/collection/crypto-deers"
-                target="_blank"
-              >
-                <img
-                  height="40"
-                  :src="require('./assets/os2.svg')"
-                  alt="OpenSea"
-                />
-              </a>
-            </div>
-
-            <div class="mt-5" style="max-width: 650px">
-              <a
-                href="https://twitter.com/Naya_N__?ref_src=twsrc%5Etfw"
-                class="twitter-follow-button"
-                data-size="large"
-                data-show-screen-name="false"
-                data-show-count="false"
-                >Follow @Naya_N__</a
-              >
-            </div>
-          </v-col>
-        </v-row>
-        <v-row ref="about" id="about" class="ma-0">
-          <v-col
-            class="mb-4 col-12"
-            style="margin-bottom: 260px; margin-top: 100px"
-          >
-            <h2 class="display-2 font-weight-bold mb-3">About</h2>
-
-            <p class="subheading font-weight-regular">
-              Crypto_Deers is a collection of 10 000 unique deers
-              <br />who live on the metaverse
-              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-            </p>
-          </v-col>
-        </v-row>
-        <v-row ref="rarity" id="rarity" class="ma-0">
-          <v-col
-            class="mb-4 col-12"
-            style="margin-bottom: 260px; margin-top: 100px"
-          >
-            <h2 class="display-2 font-weight-bold mb-3">Rarity</h2>
-
-            <p class="subheading font-weight-regular">
-              Crypto_Deers is a collection of 10 000 unique deers
-              <br />who live on the metaverse
-              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-            </p>
-          </v-col>
-        </v-row>
-        <v-row ref="creator" id="creator" class="ma-0">
-          <v-col
-            class="mb-4 col-12"
-            style="margin-bottom: 260px; margin-top: 100px"
-          >
-            <h2 class="display-2 font-weight-bold mb-3">Creator</h2>
-
-            <p class="subheading font-weight-regular">
-              Crypto_Deers is a collection of 10 000 unique deers
-              <br />who live on the metaverse
-              <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-            </p>
-          </v-col>
-          <v-col
-            class="mb-5 pl-md-6 col-12 col-sm-6"
-            style="display: flex; justify-content: flex-end"
-          >
-            <v-card
-              :loading="loading"
-              class="mr-md-12"
-              style="border-radius: 10%"
-              min-width="250px"
-              max-width="450px"
-            >
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
-
-              <v-img min-height="250" :src="require('./assets/cd.gif')"></v-img>
-            </v-card>
-          </v-col>
-
-          <v-col
-            class="mb-5 pt-12 col-12 col-sm-6"
-            style="
-              display: flex;
-              justify-content: flex-start;
-              flex-direction: column;
-            "
-          >
-            <div style="max-width: 450px">
-              <h2 class="headline font-weight-bold mb-3">
-                Site under construction
-              </h2>
-              <p class="mt-12">
-                But you can look at the information about the collection at
-              </p>
-              <a href="https://opensea.io/collection/crypto-deers">
-                <img
-                  height="40"
-                  :src="require('./assets/os2.svg')"
-                  alt="OpenSea"
-                />
-              </a>
-            </div>
-
-            <div class="mt-16" style="max-width: 450px">
-              <p>you can also follow all the news on Twitter</p>
-              <a
-                href="https://twitter.com/Naya_N__?ref_src=twsrc%5Etfw"
-                class="twitter-follow-button"
-                data-size="large"
-                data-show-screen-name="false"
-                data-show-count="false"
-                >Follow @Naya_N__</a
-              >
-            </div>
-          </v-col>
-        </v-row>
+        <section
+          ref="section1"
+          id="section1"
+          class="text-center ma-0"
+          style="padding-top: 250px"
+        >
+          <Section1 :tab="tab == 0 ? true : false" />
+        </section>
+        <section ref="section2" id="section2">
+          <Section2 />
+        </section>
+        <section ref="section3" id="section3">
+          <Section3 />
+        </section>
+        <section ref="section4" id="section4">
+          <Section4 />
+        </section>
       </v-container>
-
-      <!-- <v-main>
-        <HelloWorld />
-      </v-main> -->
     </v-sheet>
   </v-app>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
+import { mapGetters, mapMutations } from "vuex";
+import Section1 from "./components/Section1";
+import Section2 from "./components/Section2";
+import Section3 from "./components/Section3";
+import Section4 from "./components/Section4";
 
 export default {
   name: "App",
 
   components: {
-    // HelloWorld,
+    Section1,
+    Section2,
+    Section3,
+    Section4,
   },
 
   data: () => ({
-    img: "deer",
-    gl: "notGl.png",
-    glithes: ["gl3", "gl2", "gl", "gl1"],
-    deers: [
-      "deer",
-      "deer1",
-      "deer2",
-      "deer3",
-      "deer4",
-      "deer5",
-      "deer6",
-      "deer7",
-      "deer8",
-      "deer9",
-      "deer10",
-      "deer",
-      "deer1",
-      "deer2",
-      "deer3",
-      "deer4",
-      "deer5",
-      "deer6",
-      "deer7",
-      "deer8",
-      "deer9",
-      "deer10",
-    ],
-    count: 0,
-    images: 22,
-    isChangeDeer: false,
-
-    loading: false,
-
+    windowSize: {
+      x: 0,
+      y: 0,
+    },
     tab: 0,
-
-    home: { top: 0, bottom: 0 },
-    about: { top: 0, bottom: 0 },
-    rarity: { top: 0, bottom: 0 },
-    creator: { top: 0, bottom: 0 },
-
+    section1: { top: 0, bottom: 0 },
+    section2: { top: 0, bottom: 0 },
+    section3: { top: 0, bottom: 0 },
+    section4: { top: 0, bottom: 0 },
     offsetTop: 0,
   }),
-  created() {
-    this.changeDeer();
-  },
+  created() {},
   mounted() {
-    this.home = this.positionSections("home");
-    this.about = this.positionSections("about");
-    this.rarity = this.positionSections("rarity");
-    this.creator = this.positionSections("creator");
+    this.onResize();
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["GET_ACTIVE_ANIMATE"]),
+  },
   methods: {
+    ...mapMutations(["TOGGLE_ACTIVE_ANIMATE", "SET_WINDOW_SIZE"]),
     onScroll(e) {
       this.offsetTop = e.target.scrollTop;
 
-      if (this.offsetTop < this.home.bottom) {
+      if (this.tab != 0 && this.offsetTop < this.section1.bottom) {
         this.tab = 0;
-        if (!this.isChangeDeer) {
-          this.changeDeer();
-        }
       }
       if (
-        this.offsetTop > this.about.top &&
-        this.offsetTop < this.about.bottom
+        this.tab != 1 &&
+        this.offsetTop > this.section2.top &&
+        this.offsetTop < this.section2.bottom
       ) {
         this.tab = 1;
       }
       if (
-        this.offsetTop > this.rarity.top &&
-        this.offsetTop < this.rarity.bottom
+        this.tab != 2 &&
+        this.offsetTop > this.section3.top &&
+        this.offsetTop < this.section3.bottom
       ) {
         this.tab = 2;
       }
-      if (this.offsetTop > this.rarity.bottom) {
+      if (this.tab != 3 && this.offsetTop > this.section3.bottom) {
         this.tab = 3;
       }
     },
@@ -427,34 +202,13 @@ export default {
         bottom: document.getElementById(name).getBoundingClientRect().bottom,
       };
     },
-    changeDeer() {
-      this.isChangeDeer = true;
-      this.count++;
-      this.images--;
-      this.img = this.deers[this.images];
-      this.gl = "notGl.png";
-      if (this.images == 0) {
-        this.images = 22;
-        this.gl = "gl2.svg";
-      }
-      if (this.images == 16) {
-        this.gl = "gl3.svg";
-      }
-      if (this.images == 11) {
-        this.gl = "gl.svg";
-      }
-      if (this.images == 5) {
-        this.gl = "gl1.svg";
-      }
-
-      if (this.tab == 0) {
-        setTimeout(this.changeDeer, 200);
-      } else {
-        this.count = 0;
-        this.images = 22;
-        this.gl = "notGl.png";
-        this.isChangeDeer = false;
-      }
+    onResize() {
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+      this.SET_WINDOW_SIZE(this.windowSize);
+      this.section1 = this.positionSections("section1");
+      this.section2 = this.positionSections("section2");
+      this.section3 = this.positionSections("section3");
+      this.section4 = this.positionSections("section4");
     },
   },
   watch: {},
@@ -466,26 +220,6 @@ export default {
   .v-toolbar__content {
     padding: 0px 16px !important;
     align-items: flex-end !important;
-  }
-}
-.rotate {
-  -webkit-transition: -webkit-transform 1s ease-out;
-  -moz-transition: -moz-transform 1s ease-out;
-  -o-transition: -o-transform 1s ease-out;
-  -ms-transition: -ms-transform 1s ease-out;
-  transition: all 1s ease-out;
-  .msg {
-    opacity: 0;
-    transition: all 1s ease-out;
-  }
-}
-
-.rotate:hover {
-  -webkit-transform: rotateZ(-5deg);
-  -ms-transform: rotateZ(-5deg);
-  transform: translate(-30px, -20px) rotateZ(-5deg);
-  .msg {
-    opacity: 1;
   }
 }
 </style>
