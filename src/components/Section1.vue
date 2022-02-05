@@ -1,99 +1,110 @@
 <template>
-  <v-row class="text-center ma-0">
-    <v-col
-      order="1"
-      order-sm="0"
-      class="mb-5 pl-md-6 col-12 col-sm-6"
-      style="display: flex; justify-content: flex-end"
-    >
-      <v-card
-        flat
-        :loading="loading"
-        class="mr-md-12 rotate"
-        style="border-radius: 10%; position: relative"
-        min-width="250px"
-        max-width="650px"
+  <v-container>
+    <v-row class="text-center ma-0">
+      <v-col
+        order="1"
+        order-sm="0"
+        class="mb-5 pl-md-6 col-12 col-sm-6"
+        style="display: flex; justify-content: flex-end"
       >
-        <template slot="progress">
-          <v-progress-linear
-            color="deep-purple"
-            height="10"
-            indeterminate
-          ></v-progress-linear>
-        </template>
+        <v-card
+          flat
+          :loading="loading"
+          class="mr-md-12 rotate"
+          style="border-radius: 10%; position: relative"
+          min-width="250px"
+          max-width="650px"
+        >
+          <template slot="progress">
+            <v-progress-linear
+              color="deep-purple"
+              height="10"
+              indeterminate
+            ></v-progress-linear>
+          </template>
 
-        <a
-          href="https://opensea.io/collection/crypto-deers"
-          target="_blank"
-          class="msg"
+          <a
+            href="https://opensea.io/collection/crypto-deers"
+            target="_blank"
+            class="msg"
+            style="
+              position: absolute;
+              top: 50%;
+              right: 0;
+              z-index: 6;
+              color: #fff;
+              border: 2px dashed #fff;
+              border-radius: 50%;
+            "
+            :style="GET_WINDOW_SIZE.x < 1260 ? 'font-size: 0.85rem' : '1rem'"
+            :class="GET_WINDOW_SIZE.x < 1260 ? 'px-3 py-6' : 'pa-10'"
+          >
+            Купи Олешку
+          </a>
+
+          <v-img min-height="250" :src="require(`../assets/first/${gl}`)">
+            <v-img
+              style="position: absolute; top: 0; left: 0; z-index: 1"
+              min-height="250"
+              :src="require(`../assets/first/deer1.svg`)"
+            ></v-img>
+            <v-img
+              style="position: relative; z-index: 5"
+              min-height="250"
+              :src="require(`../assets/first/${img}.svg`)"
+            ></v-img>
+          </v-img>
+        </v-card>
+      </v-col>
+
+      <v-col
+        order="0"
+        order-sm="1"
+        class="mb-5 pt-12 col-12 col-sm-6 px-0"
+        style="display: flex; justify-content: center; flex-direction: column"
+      >
+        <div style="max-width: 650px">
+          <h1 class="display-2 mb-10">Welcome to Crypto_Deers</h1>
+
+          <p class="subheading font-weight-regular">
+            Crypto_Deers is a collection of 10 000 unique deers
+            <br v-if="GET_WINDOW_SIZE.x > 800" />who live on the metaverse
+          </p>
+        </div>
+        <div
+          class="mt-10"
           style="
-            position: absolute;
-            top: 50%;
-            right: 0;
-            z-index: 6;
-            color: #fff;
-            border: 2px dashed #fff;
-            border-radius: 50%;
+            max-width: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           "
-          :style="GET_WINDOW_SIZE.x < 1260 ? 'font-size: 0.85rem' : '1rem'"
-          :class="GET_WINDOW_SIZE.x < 1260 ? 'px-3 py-6' : 'pa-10'"
         >
-          Купи Олешку
-        </a>
+          <a
+            class="mr-5 open-sea"
+            href="https://opensea.io/collection/crypto-deers"
+            target="_blank"
+            style="height: 52px"
+          >
+            <img
+              class="open-sea__img"
+              height="40"
+              :src="require('../assets/os.svg')"
+              alt="OpenSea"
+            />
+          </a>
 
-        <v-img min-height="250" :src="require(`../assets/first/${gl}`)">
-          <v-img
-            style="position: absolute; top: 0; left: 0; z-index: 1"
-            min-height="250"
-            :src="require(`../assets/first/deer1.svg`)"
-          ></v-img>
-          <v-img
-            style="position: relative; z-index: 5"
-            min-height="250"
-            :src="require(`../assets/first/${img}.svg`)"
-          ></v-img>
-        </v-img>
-      </v-card>
-    </v-col>
-
-    <v-col
-      order="0"
-      order-sm="1"
-      class="mb-5 pt-12 col-12 col-sm-6 px-0"
-      style="display: flex; justify-content: center; flex-direction: column"
-    >
-      <div style="max-width: 650px">
-        <h1 class="display-2 font-weight-bold mb-3">Welcome to Crypto_Deers</h1>
-
-        <p class="subheading font-weight-regular">
-          Crypto_Deers is a collection of 10 000 unique deers
-          <br />who live on the metaverse
-          <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-        </p>
-      </div>
-      <div style="max-width: 650px">
-        <!-- <p class="mt-12">
-          But you can look at the information about the collection at
-        </p> -->
-        <a href="https://opensea.io/collection/crypto-deers" target="_blank">
-          <img height="40" :src="require('../assets/os2.svg')" alt="OpenSea" />
-        </a>
-      </div>
-
-      <div class="mt-5" style="max-width: 650px">
-        <a
-          href="https://twitter.com/Naya_N__?ref_src=twsrc%5Etfw"
-          class="twitter-follow-button"
-          data-size="large"
-          data-show-screen-name="false"
-          data-show-count="false"
-          >Follow @Naya_N__</a
-        >
-      </div>
-    </v-col>
-  </v-row>
+          <a
+            href="https://twitter.com/intent/follow?original_referer=null&amp;ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5ENaya_N__&amp;region=follow_link&amp;screen_name=Naya_N__"
+          >
+            <div class="twitter">
+              <v-icon>mdi-twitter</v-icon>
+            </div>
+          </a>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -214,4 +225,41 @@ export default {
     opacity: 1;
   }
 }
+.twitter {
+  background: #fff;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 6px solid #1e1e1e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  .v-icon {
+    color: #1e1e1e;
+  }
+
+  &:hover {
+    border: 6px solid #9466ff;
+    .v-icon {
+      color: #9466ff;
+    }
+  }
+}
+.open-sea {
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 6px solid #1e1e1e;
+  .open-sea__img {
+    border-radius: 50%;
+  }
+  &:hover {
+    background: #9466ff;
+    border: 6px solid #9466ff;
+  }
+}
 </style>
+

@@ -37,7 +37,6 @@
     </v-app-bar> -->
     <v-app-bar
       absolute
-      color="#6A76AB"
       dark
       shrink-on-scroll
       prominent
@@ -50,30 +49,57 @@
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to bottom right, rgba(100,115,201,.25), rgba(25,32,72,.8)"
+          gradient="to bottom right, rgba(0,0,0,.4), rgba(0,0,0,.95)"
         >
         </v-img>
       </template>
 
-      <!-- <template v-slot> -->
-      <v-app-bar-title class="font-weight: 600" style="width: auto"
-        >Crypto_Deers
+      <v-app-bar-title
+        class="ml-3"
+        style="width: auto; font-weight: 600"
+        :style="windowSize.x < 600 ? 'height:60px' : ''"
+      >
+        <img
+          class=""
+          height="50"
+          :src="require('./assets/Purple.svg')"
+          alt="Crypto_Deer"
+        />
+      </v-app-bar-title>
+      <v-app-bar-title
+        v-if="windowSize.x > 600"
+        class="ml-3 mb-3"
+        style="width: auto; font-weight: 600"
+      >
+        Crypto_Deers
       </v-app-bar-title>
 
       <v-spacer></v-spacer>
 
       <v-toolbar-items style="height: 56px; max-height: 56px">
         <v-tabs
-          v-model="tab"
+          :value="tab"
           right
           color="#fff"
           height="56px"
           background-color="transparent"
         >
-          <v-tab @click="scrollToSection('section1')">Home</v-tab>
-          <v-tab @click="scrollToSection('section2')">About</v-tab>
-          <v-tab @click="scrollToSection('section3')">Rarity</v-tab>
-          <v-tab @click="scrollToSection('section4')">Creator</v-tab>
+          <v-tab @click="scrollToSection('section1')"
+            ><v-icon>mdi-home-flood</v-icon>
+            <span class="ml-3" v-if="windowSize.x > 800">Home</span>
+          </v-tab>
+          <v-tab @click="scrollToSection('section2')">
+            <v-icon>mdi-lightbulb-variant</v-icon>
+            <span class="ml-3" v-if="windowSize.x > 800">About</span>
+          </v-tab>
+          <v-tab @click="scrollToSection('section3')">
+            <v-icon>mdi-script-text-outline</v-icon>
+            <span class="ml-3" v-if="windowSize.x > 800">Rarity</span>
+          </v-tab>
+          <v-tab @click="scrollToSection('section4')">
+            <v-icon>mdi-account-group-outline</v-icon>
+            <span class="ml-3" v-if="windowSize.x > 800">Team</span>
+          </v-tab>
         </v-tabs>
       </v-toolbar-items>
       <!-- </template> -->
@@ -102,6 +128,8 @@
       max-height="100vh"
     >
       <v-container
+        fluid
+        class="px-0"
         style="height: 10000px"
         ref="wrap"
         v-scroll:#scrolling-techniques-3="onScroll"
@@ -110,17 +138,17 @@
           ref="section1"
           id="section1"
           class="text-center ma-0"
-          style="padding-top: 250px"
+          style="padding-top: 220px"
         >
           <Section1 :tab="tab == 0 ? true : false" />
         </section>
-        <section ref="section2" id="section2">
+        <section ref="section2" id="section2" style="background: #242424">
           <Section2 />
         </section>
         <section ref="section3" id="section3">
           <Section3 />
         </section>
-        <section ref="section4" id="section4">
+        <section ref="section4" id="section4" style="background: #242424">
           <Section4 />
         </section>
       </v-container>
@@ -209,6 +237,9 @@ export default {
       this.section2 = this.positionSections("section2");
       this.section3 = this.positionSections("section3");
       this.section4 = this.positionSections("section4");
+      if (document.getElementById("#scrolling-techniques-3")) {
+        this.onScroll;
+      }
     },
   },
   watch: {},
@@ -218,8 +249,17 @@ export default {
 @import "~/src/sass/variables.scss";
 .menu {
   .v-toolbar__content {
-    padding: 0px 16px !important;
+    padding: 0px !important;
     align-items: flex-end !important;
   }
 }
+.v-tab {
+  min-width: 70px !important;
+}
+// .v-app-bar-title__content {
+//   width: 210px !important;
+//   min-width: 210px !important;
+//   display: flex;
+//   align-items: center;
+// }
 </style>

@@ -1,4 +1,5 @@
 <template>
+<v-container>
   <v-row class="ma-0">
     <v-col class="mb-4 col-12" style="margin-bottom: 260px; margin-top: 100px">
       <h2 class="display-2 font-weight-bold mb-3">Rarity</h2>
@@ -12,6 +13,7 @@
       </p>
     </v-col>
   </v-row>
+  </v-container>
 </template>
 
 <script>
