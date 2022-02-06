@@ -64,7 +64,9 @@
         style="display: flex; justify-content: center; flex-direction: column"
       >
         <div style="max-width: 650px">
-          <h1 class="display-2 mb-10">Welcome to Crypto_Deers</h1>
+          <h1 class="display-2 mb-10" style="font-weight: 600">
+            Welcome to Crypto_Deers
+          </h1>
 
           <p class="subheading font-weight-regular">
             Crypto_Deers is a collection of 10 000 unique deers

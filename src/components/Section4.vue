@@ -1,20 +1,22 @@
 <template>
   <v-container>
-    <v-row class="ma-0">
+    <v-row class="ma-0" style="padding-top: 100px; padding-bottom: 100px">
       <v-col
-        class="mb-4 col-12"
-        style="margin-bottom: 260px; margin-top: 100px"
+        order="0"
+        class="mb-4 col-12 text-left"
+        style="display: flex; justify-content: center"
       >
-        <h2 class="display-2 font-weight-bold mb-3">Creator</h2>
+        <v-icon color="#9466ff" size="45" class="mb-0 mr-4"
+          >mdi-account-group-outline</v-icon
+        >
+        <h3 class="display-2 mb-3" style="font-weight: 600">Team</h3>
 
-        <p class="subheading font-weight-regular">
+        <!-- <p class="subheading font-weight-regular">
           Crypto_Deers is a collection of 10 000 unique deers
           <br />who live on the metaverse
-          <!-- <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          > -->
-        </p>
+        </p> -->
       </v-col>
+
       <v-col
         class="mb-5 pl-md-6 col-12 col-sm-6"
         style="display: flex; justify-content: flex-end"
