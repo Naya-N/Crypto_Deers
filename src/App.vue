@@ -25,7 +25,6 @@
         :style="windowSize.x < 600 ? 'height:60px' : ''"
       >
         <img
-          class=""
           height="50"
           :src="require('./assets/Purple.svg')"
           alt="Crypto_Deer"
@@ -85,7 +84,7 @@
     >
       <v-container
         fluid
-        class="px-0"
+        class="px-0 pb-0"
         ref="wrap"
         v-scroll:#scrolling-techniques-3="onScroll"
       >
@@ -143,14 +142,19 @@
             :key="`4-${windowSize.x}-${windowSize.y}`"
             ref="section4"
             id="section4"
-            style="background: #242424"
+            style="background: #242424; position: relative"
             :style="
               windowSize.x > 1020 && windowSize.y > 750
-                ? 'min-height: 100vh; display: flex; align-items: center'
+                ? 'min-height: 100vh; display: flex; align-items: center; flex-direction: column'
                 : ''
             "
           >
             <Section4 />
+            <v-footer absolute dark padless>
+              <v-card class="flex" flat tile>
+                <Footer />
+              </v-card>
+            </v-footer>
           </section>
         </div>
       </v-container>
@@ -164,6 +168,7 @@ import Section1 from "./components/Section1";
 import Section2 from "./components/Section2";
 import Section3 from "./components/Section3";
 import Section4 from "./components/Section4";
+import Footer from "./components/Footer";
 
 export default {
   name: "App",
@@ -173,6 +178,7 @@ export default {
     Section2,
     Section3,
     Section4,
+    Footer,
   },
 
   data: () => ({

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify/lib/framework';
 import ru from 'vuetify/lib/locale/ru';
 import '@mdi/font/css/materialdesignicons.css';
-
+import { CUSTOM_ICONS } from './icons.js';
 
 Vue.use(Vuetify);
 
@@ -13,6 +13,7 @@ export default new Vuetify({
     },
     icons: {
         iconfont: 'mdi',
+        values: CUSTOM_ICONS,
     },
     theme: {
         dark: true,

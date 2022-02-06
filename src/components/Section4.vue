@@ -4,77 +4,74 @@
       <v-col
         order="0"
         class="mb-4 col-12 text-left"
-        style="display: flex; justify-content: center"
+        style="display: flex; justify-content: center; padding-bottom: 50px"
       >
         <v-icon color="#9466ff" size="45" class="mb-0 mr-4"
           >mdi-account-group-outline</v-icon
         >
         <h3 class="display-2 mb-3" style="font-weight: 600">Team</h3>
-
-        <!-- <p class="subheading font-weight-regular">
-          Crypto_Deers is a collection of 10 000 unique deers
-          <br />who live on the metaverse
-        </p> -->
       </v-col>
 
       <v-col
-        class="mb-5 pl-md-6 col-12 col-sm-6"
-        style="display: flex; justify-content: flex-end"
+        v-for="(person, index) in team"
+        :key="index"
+        class="mb-5 col-sm-6 col-12"
+        style="display: flex"
+        :class="[
+          (index + 1) % 2 == 0 && GET_WINDOW_SIZE.x > 1050
+            ? 'left'
+            : (index + 1) % 2 == 1 && GET_WINDOW_SIZE.x > 1050
+            ? 'right'
+            : 'center',
+        ]"
       >
         <v-card
-          :loading="loading"
-          class="mr-md-12"
-          style="border-radius: 10%"
-          min-width="250px"
-          max-width="450px"
+          class="mb-10"
+          :style="
+            GET_WINDOW_SIZE.x > 1050
+              ? 'padding-right: 100px; padding-left: 100px'
+              : ''
+          "
+          color="#242424"
+          flat
         >
-          <template slot="progress">
-            <v-progress-linear
-              color="deep-purple"
-              height="10"
-              indeterminate
-            ></v-progress-linear>
-          </template>
+          <v-hover v-slot="{ hover }" open-delay="200">
+            <v-card
+              :elevation="hover ? 16 : 0"
+              color="#242424"
+              flat
+              :loading="loading"
+              style="
+                border-radius: 50%;
 
-          <v-img min-height="250" :src="require('../assets/cd.gif')"></v-img>
+                transition: all 0.8s ease;
+              "
+              min-width="250px"
+              max-width="450px"
+              :style="
+                hover
+                  ? 'border: 6px solid #9466ff;'
+                  : 'border: 6px solid #242424;'
+              "
+            >
+              <v-avatar
+                :size="$vuetify.breakpoint.name == 'xs' ? '238' : '238'"
+              >
+                <img :src="require(`../assets/${person.img}`)" alt="John" />
+              </v-avatar>
+            </v-card>
+          </v-hover>
+
+          <v-card-text>
+            <p
+              style="font-weight: 600; font-size: 1.5rem"
+              :style="person.social == 'tt' ? '' : 'padding-bottom:10px'"
+            >
+              {{ person.name }} <TikTok v-if="person.social == 'tt'" />
+            </p>
+            {{ person.description }}
+          </v-card-text>
         </v-card>
-      </v-col>
-
-      <v-col
-        class="mb-5 pt-12 col-12 col-sm-6"
-        style="
-          display: flex;
-          justify-content: flex-start;
-          flex-direction: column;
-        "
-      >
-        <div style="max-width: 450px">
-          <h2 class="headline font-weight-bold mb-3">
-            Site under construction
-          </h2>
-          <p class="mt-12">
-            But you can look at the information about the collection at
-          </p>
-          <a href="https://opensea.io/collection/crypto-deers">
-            <img
-              height="40"
-              :src="require('../assets/os2.svg')"
-              alt="OpenSea"
-            />
-          </a>
-        </div>
-
-        <div class="mt-16" style="max-width: 450px">
-          <p>you can also follow all the news on Twitter</p>
-          <a
-            href="https://twitter.com/Naya_N__?ref_src=twsrc%5Etfw"
-            class="twitter-follow-button"
-            data-size="large"
-            data-show-screen-name="false"
-            data-show-count="false"
-            >Follow @Naya_N__</a
-          >
-        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -82,8 +79,12 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import TikTok from "./social/TikTok.vue";
 export default {
   name: "Section4",
+  components: {
+    TikTok,
+  },
   props: {
     tab: {
       type: Boolean,
@@ -94,13 +95,23 @@ export default {
 
   data: () => ({
     loading: false,
+    team: [
+      {
+        name: "Naya_N",
+        description: "Creator & Frontend developer",
+        social: "",
+        img: "naya2.png",
+      },
+      {
+        name: "Fess",
+        description: "Inspiring cat with character",
+        social: "tt",
+        img: "fess.png",
+      },
+    ],
   }),
 
-  mounted() {
-    if (this.tab) {
-      this.changeDeer();
-    }
-  },
+  mounted() {},
   computed: {
     ...mapGetters(["GET_ACTIVE_ANIMATE", "GET_WINDOW_SIZE"]),
   },
@@ -112,5 +123,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//
+.right {
+  justify-content: flex-end;
+}
+.left {
+  justify-content: flex-start;
+}
+.center {
+  justify-content: center;
+}
 </style>
