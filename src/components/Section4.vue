@@ -57,7 +57,15 @@
               <v-avatar
                 :size="$vuetify.breakpoint.name == 'xs' ? '238' : '238'"
               >
-                <img :src="require(`../assets/${person.img}`)" alt="John" />
+                <v-img
+                  :src="require(`../assets/${person.img}`)"
+                  alt="person"
+                  :gradient="
+                    person.name == 'Fess'
+                      ? 'to top right, rgba(38,50,56,.45), rgba(38,50,56,.7)'
+                      : ''
+                  "
+                ></v-img>
               </v-avatar>
             </v-card>
           </v-hover>
