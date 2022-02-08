@@ -46,7 +46,7 @@
           color="#242424"
           flat
           :loading="loading"
-          style="border-radius: 10%"
+          
           min-width="250px"
           max-width="450px"
           :style="

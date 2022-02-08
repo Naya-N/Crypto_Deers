@@ -10,6 +10,7 @@
       scroll-target="#scrolling-techniques-3"
       class="menu"
       height="250px"
+      style="z-index: 150"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -80,7 +81,7 @@
     <v-sheet
       id="scrolling-techniques-3"
       class="overflow-y-auto"
-      max-height="100vh"
+      max-height="110vh"
     >
       <v-container
         fluid
@@ -136,7 +137,7 @@
                 : ''
             "
           >
-            <Section3 />
+            <Section3 :tab="tab" />
           </section>
           <section
             :key="`4-${windowSize.x}-${windowSize.y}`"
@@ -212,6 +213,13 @@ export default {
       this.offsetTop = e.target.scrollTop;
     },
     scrollToSection(name) {
+      name == "section1"
+        ? (this.tab = 0)
+        : name == "section2"
+        ? (this.tab = 1)
+        : name == "section3"
+        ? (this.tab = 2)
+        : (this.tab = 3);
       document.getElementById(name).scrollIntoView({
         behavior: "smooth",
         block: "start",

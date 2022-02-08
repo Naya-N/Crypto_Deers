@@ -35,17 +35,13 @@
           color="#242424"
           flat
         >
-          <v-hover v-slot="{ hover }" open-delay="200">
+          <v-hover v-slot="{ hover }">
             <v-card
               :elevation="hover ? 16 : 0"
               color="#242424"
               flat
               :loading="loading"
-              style="
-                border-radius: 50%;
-
-                transition: all 0.8s ease;
-              "
+              style="border-radius: 50%; transition: all 0.8s ease"
               min-width="250px"
               max-width="450px"
               :style="

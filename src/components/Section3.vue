@@ -1,54 +1,92 @@
 <template>
-  <v-container>
+  <v-container
+    :fluid="
+      $vuetify.breakpoint.name == 'sm' || $vuetify.breakpoint.name == 'md'
+    "
+  >
     <v-row class="ma-0" style="padding-bottom: 100px; padding-top: 100px">
       <v-col
-        order="0"
-        order-sm="0"
-        class="mb-5 pt-12 col-12 col-sm-6 px-0"
-        style="display: flex; justify-content: center; flex-direction: column"
+        order="1"
+        order-md="0"
+        class="mb-5 pt-12 px-0"
+        style="display: flex; flex-direction: column"
+        :style="
+          GET_WINDOW_SIZE.x >= 1200
+            ? 'justify-content: center'
+            : 'justify-content: flex-end'
+        "
+        :class="GET_WINDOW_SIZE.x >= 1200 ? 'col-12 col-md-6' : 'col-auto'"
       >
         <div style="max-width: 650px" class="mx-auto px-4">
-          <!-- <div
-            style="
-              display: flex;
-              justify-content: flex-start;
-              align-items: center;
-              margin-bottom: 50px;
-            "
-          >
-            <v-icon color="#9466ff" size="40" class="mb-2 mr-4"
-              >mdi-script-text-outline</v-icon
-            >
-            <h3 class="display-2 mb-3">Rarity</h3>
-          </div> -->
-
           <v-card
-            :loading="loading"
-            class="mr-md-12"
-            style="border-radius: 10%"
+            id="cardImage"
+            flat
+            style="border-radius: 0; position: relative"
             min-width="250px"
-            max-width="450px"
+            :max-width="
+              GET_WINDOW_SIZE.x >= 1200
+                ? '450px'
+                : GET_WINDOW_SIZE.x < 1200 && GET_WINDOW_SIZE.x >= 900
+                ? '400px'
+                : '270px'
+            "
+            :class="{ 'mr-md-12': GET_WINDOW_SIZE.x >= 1200 }"
+            max-height="450px"
           >
-            <template slot="progress">
-              <v-progress-linear
-                color="deep-purple"
-                height="10"
-                indeterminate
-              ></v-progress-linear>
-            </template>
+            <img
+              :style="
+                GET_WINDOW_SIZE.x >= 1200
+                  ? 'width: 450px'
+                  : GET_WINDOW_SIZE.x < 1200 && GET_WINDOW_SIZE.x >= 900
+                  ? 'width:400px'
+                  : 'width:270px'
+              "
+              :src="require(`../assets/rarity/bgCard.png`)"
+            />
+            <div
+              v-if="GET_WINDOW_SIZE.x >= 1200"
+              style="
+                position: absolute;
+                z-index: 0;
+                border: 3px solid #242121;
+                top: -40px;
+                left: -40px;
+              "
+              :style="`width: calc(${size}px + 80px); height: calc(${size}px + 80px)`"
+            ></div>
 
-            <v-img min-height="250" :src="require('../assets/cd.gif')"></v-img>
+            <div
+              class="layer-img"
+              v-for="img in images"
+              :key="`${img.id}-${tab}`"
+              :style="
+                active === img.id
+                  ? `position: absolute; top: -15px; left: -15px; z-index: ${img.id}`
+                  : `position: absolute; top: 0; left: 0; z-index: ${img.id}`
+              "
+            >
+              <v-img
+                :width="size"
+                max-width="450px"
+                max-height="450px"
+                :src="require(`../assets/rarity/${img.img}.svg`)"
+              ></v-img>
+            </div>
           </v-card>
         </div>
       </v-col>
 
       <v-col
-        order="1"
-        order-sm="1"
-        class="mb-5 pt-12 col-12 col-sm-6 px-0"
+        order="0"
+        order-md="1"
+        class="mb-5 pt-12 px-0"
         style="display: flex; justify-content: center; flex-direction: column"
+        :class="[
+          GET_WINDOW_SIZE.x >= 1200 ? 'col-12 col-md-6' : 'col',
+          GET_WINDOW_SIZE.x < 710 ? '' : '',
+        ]"
       >
-        <div style="max-width: 650px" class="mx-auto px-4">
+        <div style="max-width: 880px" class="mx-auto px-4">
           <div
             style="
               display: flex;
@@ -62,26 +100,99 @@
             >
             <h3 class="display-2 mb-3" style="font-weight: 600">Rarity</h3>
           </div>
+          <v-row class="ma-0">
+            <v-col class="col-12 col-6" v-for="layer in layers" :key="layer.id">
+              <v-hover v-slot="{ hover }">
+                <v-card
+                  :elevation="hover ? 16 : 2"
+                  color="#272727"
+                  @mouseover="active = layer.id"
+                  @mouseleave="active = null"
+                >
+                  <v-card-text
+                    v-if="GET_WINDOW_SIZE.x > 710"
+                    class="d-flex justify-space-between align-center"
+                    :style="
+                      GET_WINDOW_SIZE.x >= 1200
+                        ? 'font-size: 1.6rem'
+                        : GET_WINDOW_SIZE.x < 1200 && GET_WINDOW_SIZE.x >= 750
+                        ? 'font-size: 1.2rem'
+                        : 'font-size: 1rem'
+                    "
+                  >
+                    {{ layer.name }}
+                    <div
+                      class="d-flex align-center justify-center"
+                      style="
+                        border-radius: 50%;
 
-          <p class="subheading font-weight-regular text-left">
-            Sacred Skulls is a collection of 8,888 randomly generated Skull NFTs
-            (Non- Fungible Token to live on the Ethereum blockchain as ERC-721
-            and hosted by IPFS). Our collection of Skulls are hand drawn by an
-            incredibly talented, female artist, @HelenaEliasArt. The Skulls are
-            uniquely generated with ~180-200 (TBD) traits, including Skull Skin,
-            Tattoos, Teeth, Frames, Backgrounds, Nose traits, Sacred Geometry,
-            Eyes, and Mouth.
-          </p>
+                        font-weight: 600;
+                        font-size: 1.4rem;
+                      "
+                      :style="
+                        GET_WINDOW_SIZE.x >= 1200
+                          ? 'font-size: 1.4rem; border: 6px solid #9466ff; width: 50px; height: 50px;'
+                          : GET_WINDOW_SIZE.x < 1200 && GET_WINDOW_SIZE.x >= 750
+                          ? 'font-size: 1rem; border: 3px solid #9466ff; width: 40px; height: 40px;'
+                          : 'font-size: 0.8rem; border: 1px solid #9466ff; width: 30px; height: 30px;'
+                      "
+                    >
+                      {{ layer.count }}
+                    </div>
+                  </v-card-text>
+                  <v-card-text
+                    v-else
+                    class="d-flex justify-space-between align-center py-1 px-2"
+                    :style="'font-size: 1rem'"
+                  >
+                    {{ layer.id }}
+                    <v-icon>mdi-star</v-icon>
+                  </v-card-text>
+                </v-card>
+              </v-hover>
+            </v-col>
+          </v-row>
+        </div>
+      </v-col>
 
-          <p class="subheading font-weight-regular text-left">
-            Sacred Skulls is a collection of 8,888 randomly generated Skull NFTs
-            (Non- Fungible Token to live on the Ethereum blockchain as ERC-721
-            and hosted by IPFS). Our collection of Skulls are hand drawn by an
-            incredibly talented, female artist, @HelenaEliasArt. The Skulls are
-            uniquely generated with ~180-200 (TBD) traits, including Skull Skin,
-            Tattoos, Teeth, Frames, Backgrounds, Nose traits, Sacred Geometry,
-            Eyes, and Mouth.
-          </p>
+      <v-col
+        v-if="GET_WINDOW_SIZE.x <= 710"
+        order="2"
+        order-md="2"
+        class="mb-5 px-0 col-12"
+        style="display: flex; justify-content: center; flex-direction: column"
+      >
+        <div style="max-width: 880px" class="mx-auto pl-4">
+          <v-row class="ma-0">
+            <v-col
+              class="col-12 col-sm-6"
+              v-for="(layer, i) in layers"
+              :key="i"
+            >
+              <v-hover v-slot="{ hover }">
+                <v-card :elevation="hover ? 16 : 2" color="#272727">
+                  <v-card-text
+                    class="d-flex justify-space-between align-center"
+                    :style="'font-size: 1rem'"
+                  >
+                    {{ layer.name }}
+                    <div
+                      class="d-flex align-center justify-center"
+                      style="
+                        border-radius: 50%;
+
+                        font-weight: 600;
+                        font-size: 1.4rem;
+                      "
+                      :style="'font-size: 0.8rem; border: 1px solid #9466ff; width: 30px; height: 30px;'"
+                    >
+                      {{ layer.count }}
+                    </div>
+                  </v-card-text>
+                </v-card>
+              </v-hover>
+            </v-col>
+          </v-row>
         </div>
       </v-col>
     </v-row>
@@ -94,31 +205,76 @@ export default {
   name: "Section3",
   props: {
     tab: {
-      type: Boolean,
+      type: Number,
       require: true,
-      default: false,
     },
   },
 
   data: () => ({
-    loading: false,
+    active: null,
+    // size: 0,
+    layers: [
+      { id: 1, name: "Background", count: 17 },
+      { id: 7, name: "Base", count: 9 },
+      { id: 4, name: "Base Color", count: 19 },
+      { id: 5, name: "Eyes Color", count: 25 },
+      { id: 2, name: "Figure", count: 24 },
+      { id: 6, name: "Flare", count: 9 },
+      { id: 8, name: "Forehead", count: 42 },
+      { id: 3, name: "Glassy", count: 2 },
+    ],
+    images: [
+      { id: 1, img: "bg" },
+      { id: 2, img: "figure" },
+      { id: 3, img: "glassy2" },
+      { id: 4, img: "baseColor" },
+      { id: 5, img: "eyesColor" },
+      { id: 6, img: "flare" },
+      { id: 7, img: "base" },
+      { id: 8, img: "forehead" },
+    ],
   }),
 
-  mounted() {
-    if (this.tab) {
-      this.changeDeer();
-    }
-  },
+  // mounted() {
+  //   this.getSize();
+  // },
+  // updated() {
+  //   // this.getSize();
+  // },
+  // beforeUpdate() {
+  //   this.getSize();
+  // },
   computed: {
     ...mapGetters(["GET_ACTIVE_ANIMATE", "GET_WINDOW_SIZE"]),
+
+    size() {
+      if (this.tab) {
+        return this.getSize();
+      } else {
+        return this.getSize();
+      }
+    },
   },
   methods: {
     ...mapMutations(["TOGGLE_ACTIVE_ANIMATE"]),
+    getSize() {
+      if (document.getElementById("cardImage")) {
+        return document.getElementById("cardImage").offsetWidth;
+      }
+    },
   },
   watch: {},
 };
 </script>
 
 <style lang="scss" scoped>
-//
+.v-card {
+  transition: all 0.2s ease;
+}
+.layer-img {
+  transition: all 0.4s ease;
+  // &:hover {
+  //   transform: translate(-30px, -20px) rotateZ(-5deg);
+  // }
+}
 </style>
