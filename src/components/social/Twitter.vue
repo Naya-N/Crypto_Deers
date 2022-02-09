@@ -33,6 +33,7 @@ export default {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 
   .v-icon {
     color: #1e1e1e;
@@ -40,8 +41,10 @@ export default {
 
   &:hover {
     border: 6px solid #9466ff;
+     box-sizing: border-box;
     .v-icon {
       color: #9466ff;
+       box-sizing: border-box;
     }
   }
 }

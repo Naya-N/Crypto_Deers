@@ -7,7 +7,6 @@
   >
     <img
       class="open-sea__img"
-      height="40"
       :src="require('../../assets/os.svg')"
       alt="OpenSea"
     />
@@ -35,6 +34,7 @@ export default {
   border: 6px solid #1e1e1e;
   .open-sea__img {
     border-radius: 50%;
+    height: 40px;
   }
   &:hover {
     background: #9466ff;

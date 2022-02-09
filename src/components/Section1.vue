@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row class="text-center ma-0">
+    <v-row class="text-center ma-0" itemscope itemtype="https://schema.org/CreativeWork">
       <v-col
         order="1"
         order-sm="0"
@@ -42,7 +42,7 @@
             Купи Олешку
           </a>
 
-          <v-img min-height="250" :src="require(`../assets/first/${gl}`)">
+          <v-img itemprop="image" min-height="250" :src="require(`../assets/first/${gl}`)">
             <v-img
               style="position: absolute; top: 0; left: 0; z-index: 1"
               min-height="250"
@@ -64,7 +64,7 @@
         style="display: flex; justify-content: center; flex-direction: column"
       >
         <div style="max-width: 650px">
-          <h1 class="display-2 mb-10" style="font-weight: 600">
+          <h1 class="display-2 mb-10" style="font-weight: 600" itemprop="name">
             Welcome to Crypto_Deers
           </h1>
 

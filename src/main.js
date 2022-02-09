@@ -3,6 +3,17 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import store from './store';
 
+import browserDetect from 'vue-browser-detect-plugin';
+Vue.use(browserDetect);
+
+import VueMeta from 'vue-meta';
+Vue.use(VueMeta, {
+  keyName: 'metaInfo',
+  attribute: 'data-vue-meta',
+  tagIDKeyName: 'vmid',
+  refreshOnceOnNavigation: true,
+});
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -253,7 +253,7 @@ export default {
       {
         id: 2,
         img: "figure",
-        style: "position: absolute; top: 30; left: 30px; z-index: 2",
+        style: "position: absolute; top: 0; left: 0; z-index: 2",
       },
       {
         id: 3,
@@ -288,15 +288,6 @@ export default {
     ],
   }),
 
-  // mounted() {
-  //   this.getSize();
-  // },
-  // updated() {
-  //   // this.getSize();
-  // },
-  // beforeUpdate() {
-  //   this.getSize();
-  // },
   computed: {
     ...mapGetters(["GET_ACTIVE_ANIMATE", "GET_WINDOW_SIZE"]),
 
@@ -316,7 +307,18 @@ export default {
       }
     },
   },
-  watch: {},
+  watch: {
+    tab() {
+      if (this.tab == 2) {
+        this.activeAll = true;
+        setTimeout(() => {
+          this.activeAll = false;
+        }, 300);
+      } else {
+        this.activeAll = false;
+      }
+    },
+  },
 };
 </script>
 
