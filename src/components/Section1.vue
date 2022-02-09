@@ -33,7 +33,7 @@
               right: 0;
               z-index: 6;
               color: #fff;
-              border: 2px dashed #fff;
+              border: 2px dashed #9466ff;
               border-radius: 50%;
             "
             :style="GET_WINDOW_SIZE.x < 1260 ? 'font-size: 0.85rem' : '1rem'"

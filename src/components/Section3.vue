@@ -8,14 +8,20 @@
       <v-col
         order="1"
         order-md="0"
-        class="mb-5 pt-12 px-0"
+        class="mb-5 px-0"
         style="display: flex; flex-direction: column"
         :style="
           GET_WINDOW_SIZE.x >= 1200
             ? 'justify-content: center'
             : 'justify-content: flex-end'
         "
-        :class="GET_WINDOW_SIZE.x >= 1200 ? 'col-12 col-md-6' : 'col-auto'"
+        :class="
+          GET_WINDOW_SIZE.x >= 1200
+            ? 'col-12 col-md-6 pt-12'
+            : GET_WINDOW_SIZE.x < 1200 && GET_WINDOW_SIZE.x >= 550
+            ? 'col-auto pt-12'
+            : 'col-12 pt-0'
+        "
       >
         <div style="max-width: 650px" class="mx-auto px-4">
           <v-card
@@ -32,6 +38,8 @@
             "
             :class="{ 'mr-md-12': GET_WINDOW_SIZE.x >= 1200 }"
             max-height="450px"
+            @mouseover="activeAll = true"
+            @mouseleave="activeAll = false"
           >
             <img
               :style="
@@ -60,7 +68,9 @@
               v-for="img in images"
               :key="`${img.id}-${tab}`"
               :style="
-                active === img.id
+                activeAll
+                  ? img.style
+                  : !activeAll && active === img.id
                   ? `position: absolute; top: -15px; left: -15px; z-index: ${img.id}`
                   : `position: absolute; top: 0; left: 0; z-index: ${img.id}`
               "
@@ -81,10 +91,7 @@
         order-md="1"
         class="mb-5 pt-12 px-0"
         style="display: flex; justify-content: center; flex-direction: column"
-        :class="[
-          GET_WINDOW_SIZE.x >= 1200 ? 'col-12 col-md-6' : 'col',
-          GET_WINDOW_SIZE.x < 710 ? '' : '',
-        ]"
+        :class="[GET_WINDOW_SIZE.x >= 1200 ? 'col-12 col-md-6' : 'col']"
       >
         <div style="max-width: 880px" class="mx-auto px-4">
           <div
@@ -100,14 +107,26 @@
             >
             <h3 class="display-2 mb-3" style="font-weight: 600">Rarity</h3>
           </div>
+
+          <p v-if="GET_WINDOW_SIZE.x <= 710" class="ml-3 text-left">
+            {{ activeName }}
+          </p>
+
           <v-row class="ma-0">
-            <v-col class="col-12 col-6" v-for="layer in layers" :key="layer.id">
+            <v-col
+              :class="GET_WINDOW_SIZE.x < 550 ? 'col-auto' : 'col-6'"
+              v-for="layer in layers"
+              :key="layer.id"
+            >
               <v-hover v-slot="{ hover }">
                 <v-card
                   :elevation="hover ? 16 : 2"
                   color="#272727"
-                  @mouseover="active = layer.id"
-                  @mouseleave="active = null"
+                  @mouseover="
+                    (active = layer.id),
+                      (activeName = `${layer.id}. ${layer.name}`)
+                  "
+                  @mouseleave="(active = null), (activeName = 'Layers')"
                 >
                   <v-card-text
                     v-if="GET_WINDOW_SIZE.x > 710"
@@ -146,7 +165,7 @@
                     :style="'font-size: 1rem'"
                   >
                     {{ layer.id }}
-                    <v-icon>mdi-star</v-icon>
+                    <v-icon class="ml-2">mdi-star</v-icon>
                   </v-card-text>
                 </v-card>
               </v-hover>
@@ -212,26 +231,60 @@ export default {
 
   data: () => ({
     active: null,
-    // size: 0,
+    activeName: "Layers",
+    activeAll: false,
+
     layers: [
       { id: 1, name: "Background", count: 17 },
-      { id: 7, name: "Base", count: 9 },
+      { id: 2, name: "Figure", count: 24 },
+      { id: 3, name: "Glassy", count: 2 },
       { id: 4, name: "Base Color", count: 19 },
       { id: 5, name: "Eyes Color", count: 25 },
-      { id: 2, name: "Figure", count: 24 },
       { id: 6, name: "Flare", count: 9 },
+      { id: 7, name: "Base", count: 9 },
       { id: 8, name: "Forehead", count: 42 },
-      { id: 3, name: "Glassy", count: 2 },
     ],
     images: [
-      { id: 1, img: "bg" },
-      { id: 2, img: "figure" },
-      { id: 3, img: "glassy2" },
-      { id: 4, img: "baseColor" },
-      { id: 5, img: "eyesColor" },
-      { id: 6, img: "flare" },
-      { id: 7, img: "base" },
-      { id: 8, img: "forehead" },
+      {
+        id: 1,
+        img: "bg",
+        style: "position: absolute; top: -15px; left: -15px; z-index: 1",
+      },
+      {
+        id: 2,
+        img: "figure",
+        style: "position: absolute; top: 30; left: 30px; z-index: 2",
+      },
+      {
+        id: 3,
+        img: "glassy2",
+        style: "position: absolute; top: 15px; left: 15px; z-index: 3",
+      },
+      {
+        id: 4,
+        img: "baseColor",
+        style: "position: absolute; top: 0; left: -5px; z-index: 4",
+      },
+      {
+        id: 5,
+        img: "eyesColor",
+        style: "position: absolute; top: 0; left: 0; z-index: 5",
+      },
+      {
+        id: 6,
+        img: "flare",
+        style: "position: absolute; top: 0; left: 0; z-index: 6",
+      },
+      {
+        id: 7,
+        img: "base",
+        style: "position: absolute; top: 0px; left: 5px; z-index: 7",
+      },
+      {
+        id: 8,
+        img: "forehead",
+        style: "position: absolute; top: -25px; left:0; z-index: 8",
+      },
     ],
   }),
 
@@ -273,8 +326,5 @@ export default {
 }
 .layer-img {
   transition: all 0.4s ease;
-  // &:hover {
-  //   transform: translate(-30px, -20px) rotateZ(-5deg);
-  // }
 }
 </style>

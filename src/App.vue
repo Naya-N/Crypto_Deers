@@ -22,7 +22,7 @@
 
       <v-app-bar-title
         class="ml-3"
-        style="width: auto; font-weight: 600"
+        style="width: auto; font-weight: 600;"
         :style="windowSize.x < 600 ? 'height:60px' : ''"
       >
         <img
@@ -38,15 +38,6 @@
       >
         Crypto_Deers
       </v-app-bar-title>
-
-      <!-- {{ windowSize.y }}/ -->
-      <!-- {{ offsetTop }} -->
-      <!-- / 1 {{ positionSection1 }} -->
-      <!-- / 2 {{ positionSection2 }} -->
-      <!-- / 3
-      {{ positionSection3 }} -->
-      <!-- / 4
-      {{ positionSection4 }} -->
 
       <v-spacer></v-spacer>
 
@@ -81,7 +72,7 @@
     <v-sheet
       id="scrolling-techniques-3"
       class="overflow-y-auto"
-      max-height="110vh"
+      max-height="100vh"
     >
       <v-container
         fluid
@@ -234,27 +225,27 @@ export default {
     changeActiveTab() {
       if (
         this.offsetTop >= 0 &&
-        this.offsetTop < this.positionSection1.bottom - 20
+        this.offsetTop < this.positionSection1.bottom - 150
       ) {
         this.tab = 0;
       }
       if (
         this.tab != 1 &&
-        this.offsetTop >= this.positionSection2.top - 10 &&
-        this.offsetTop < this.positionSection2.bottom - 20
+        this.offsetTop >= this.positionSection2.top - 100 &&
+        this.offsetTop < this.positionSection2.bottom - 150
       ) {
         this.tab = 1;
       }
       if (
         this.tab != 2 &&
-        this.offsetTop >= this.positionSection3.top - 10 &&
-        this.offsetTop < this.positionSection3.bottom - 20
+        this.offsetTop >= this.positionSection3.top - 100 &&
+        this.offsetTop < this.positionSection3.bottom - 150
       ) {
         this.tab = 2;
       }
       if (
         this.tab != 3 &&
-        this.offsetTop >= this.positionSection3.bottom - 10
+        this.offsetTop >= this.positionSection3.bottom - 100
       ) {
         this.tab = 3;
       }
