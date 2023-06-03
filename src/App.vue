@@ -406,7 +406,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~/src/sass/variables.scss";
 .menu {
   .v-toolbar__content {
     padding: 0px !important;
