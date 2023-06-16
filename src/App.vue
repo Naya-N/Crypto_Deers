@@ -72,7 +72,7 @@
     <v-sheet
       id="scrolling-techniques-3"
       class="overflow-y-auto"
-      max-height="100vh"
+      max-height="100dvh"
     >
       <v-container
         fluid
@@ -99,7 +99,7 @@
             :class="`1-${windowSize.x}-${windowSize.y}`"
             :style="
               windowSize.x > 1020 && windowSize.y > 750
-                ? `min-height: 100vh; display: flex; align-items: center`
+                ? `min-height: 100dvh; display: flex; align-items: center`
                 : ''
             "
           >
@@ -112,7 +112,7 @@
             style="background: #242424"
             :style="
               windowSize.x > 1020 && windowSize.y > 750
-                ? 'min-height: 100vh; display: flex; align-items: center'
+                ? 'min-height: 100dvh; display: flex; align-items: center'
                 : ''
             "
           >
@@ -124,7 +124,7 @@
             id="section3"
             :style="
               windowSize.x > 1020 && windowSize.y > 750
-                ? 'min-height: 100vh; display: flex; align-items: center'
+                ? 'min-height: 100dvh; display: flex; align-items: center'
                 : ''
             "
           >
@@ -137,7 +137,7 @@
             style="background: #242424; position: relative"
             :style="
               windowSize.x > 1020 && windowSize.y > 750
-                ? 'min-height: 100vh; display: flex; align-items: center; flex-direction: column'
+                ? 'min-height: 100dvh; display: flex; align-items: center; flex-direction: column'
                 : ''
             "
           >
@@ -198,8 +198,8 @@
     <v-sheet
       id="scrolling-techniques-3"
       class="overflow-y-auto"
-      max-height="100vh"
-      min-height="100vh"
+      max-height="100dvh"
+      min-height="100dvh"
     >
       <v-container
         fluid
