@@ -1,6 +1,6 @@
 <template>
   <v-app v-resize="onResize">
-    <HeaderComponent :tab="tab" @changeDisabled="disabledCalculateTab = true" />
+    <HeaderComponent :tab="tab" @changeDisabled="changeDisabled" />
     <v-main style="background: #1e1e1e">
       <v-container
         style="height: 100%"
@@ -33,7 +33,7 @@
               : calculateStyle
           "
         >
-          <component :is="`Section${num}`" />
+          <component :is="`Section${num}`" :tab="tab" />
           <FooterComponent v-if="num === 4" />
         </section>
       </v-container>
@@ -145,6 +145,10 @@ export default {
           this.tab = +val[0].id - 1;
         }
       }
+    },
+    changeDisabled(val) {
+      this.disabledCalculateTab = true
+      this.tab = val
     },
   },
 };

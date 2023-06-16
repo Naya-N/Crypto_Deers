@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     scrollToSection(name) {
-      this.$emit('changeDisabled');
+      this.$emit('changeDisabled', +name.slice(-1) - 1);
 
       document.getElementById(name).scrollIntoView({
         behavior: 'smooth',
