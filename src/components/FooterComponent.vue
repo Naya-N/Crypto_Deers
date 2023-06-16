@@ -26,19 +26,20 @@
             />
           </v-col>
           <v-col class="pa-0" style="align-self: center">
-            <v-card-text class="pa-0 text-left" style="font-size: 1.2rem">
+            <p class="pa-0 text-left mb-0" style="font-size: 1.2rem">
               <strong class="subheading white--text text-left"
                 >Crypto_Deers</strong
               >
-            </v-card-text>
-            <v-card-text class="pa-0 text-left" style="font-size: 0.66rem">
+            </p>
+            <p class="pa-0 text-left mb-0" style="font-size: 0.66rem">
               © Naya_N — 2022
-            </v-card-text>
+            </p>
           </v-col>
         </v-row>
       </div>
 
       <div
+        class="pa-2"
         :class="GET_WINDOW_SIZE.x < 400 ? 'mx-auto mb-6' : ''"
         :style="
           GET_WINDOW_SIZE.x < 400
