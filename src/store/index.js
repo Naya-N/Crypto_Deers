@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import animateDeer from './module/animateDeer';
 import windowSize from './module/windowSize';
 
 
@@ -13,7 +12,6 @@ export default new Vuex.Store({
     mutations: {},
     actions: {},
     modules: {
-        animateDeer,
         windowSize,
     },
 });
