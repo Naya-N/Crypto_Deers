@@ -1,14 +1,14 @@
 <template>
-  <v-row class="ma-0" style="padding-top: 100px">
-    <v-col
-      order="0"
-      class="mb-4 col-12 text-left"
-      style="display: flex; justify-content: center; padding-bottom: 50px"
-    >
-      <v-icon color="#9466ff" size="45" class="mb-0 mr-4"
-        >mdi-account-group-outline</v-icon
+  <v-row class="ma-0 container mx-auto" style="padding-top: 100px">
+    <v-col order="0" class="mb-4 col-12 text-left">
+      <div
+        style="display: flex; justify-content: center; align-items: center padding-bottom: 50px"
       >
-      <h3 class="display-2 mb-3" style="font-weight: 600">Team</h3>
+        <v-icon color="#9466ff" size="45" class="mb-0 mr-4"
+          >mdi-account-group-outline</v-icon
+        >
+        <h3 class="display-2 mb-3" style="font-weight: 600">Team</h3>
+      </div>
     </v-col>
 
     <v-col
