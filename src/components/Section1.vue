@@ -58,12 +58,12 @@
           <v-img
             itemprop="image"
             min-height="250"
-            :src="require(`../assets/first/${activeGlitch}`)"
+            :src="require(`../assets/first-min/${activeGlitch}`)"
           >
             <v-img
               style="position: absolute; top: 0; left: 0; z-index: 1"
               min-height="250"
-              :src="require(`../assets/first/deer1.svg`)"
+              :src="require(`../assets/first-min/deer1.svg`)"
             ></v-img>
             <template v-for="(deer, i) in deers">
               <v-img
@@ -71,7 +71,7 @@
                 v-show="active === i"
                 style="position: relative; z-index: 5"
                 min-height="250"
-                :src="require(`../assets/first/${deer}.svg`)"
+                :src="require(`../assets/first-min/${deer}.svg`)"
               ></v-img>
             </template>
           </v-img>

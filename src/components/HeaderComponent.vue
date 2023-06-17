@@ -5,7 +5,7 @@
     dark
     shrink-on-scroll
     prominent
-    :src="require('../assets/Baner2.png')"
+    :src="require('../assets/Baner.png')"
     fade-img-on-scroll
     class="menu"
     height="250px"

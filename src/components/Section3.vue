@@ -1,10 +1,6 @@
 <template>
-  <v-container
-    :fluid="
-      $vuetify.breakpoint.name == 'sm' || $vuetify.breakpoint.name == 'md'
-    "
-  >
-    <v-row class="ma-0" style="padding-bottom: 100px; padding-top: 100px">
+
+    <v-row  class="ma-0" style="padding-bottom: 100px; padding-top: 100px">
       <v-col
         order="1"
         order-md="0"
@@ -49,7 +45,7 @@
                   ? 'width:400px'
                   : 'width:270px'
               "
-              :src="require(`../assets/rarity/bgCard.png`)"
+              :src="require(`../assets/rarity-min/bgCard.png`)"
             />
             <div
               v-if="GET_WINDOW_SIZE.x >= 1200"
@@ -79,7 +75,7 @@
                 :width="size"
                 max-width="450px"
                 max-height="450px"
-                :src="require(`../assets/rarity/${img.img}.svg`)"
+                :src="require(`../assets/rarity-min/${img.img}.svg`)"
               ></v-img>
             </div>
           </v-card>
@@ -215,11 +211,11 @@
         </div>
       </v-col>
     </v-row>
-  </v-container>
+
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "Section3",
   props: {
@@ -292,7 +288,7 @@ export default {
     ...mapGetters(["GET_ACTIVE_ANIMATE", "GET_WINDOW_SIZE"]),
 
     size() {
-      if (this.tab) {
+      if (this.tab === 2) {
         return this.getSize();
       } else {
         return this.getSize();
@@ -300,12 +296,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["TOGGLE_ACTIVE_ANIMATE"]),
     getSize() {
       if (document.getElementById("cardImage")) {
         return document.getElementById("cardImage").offsetWidth;
       }
     },
+   
   },
   watch: {
     tab() {
