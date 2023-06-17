@@ -1,7 +1,12 @@
 <template>
   <v-row
     class="ma-0 container mx-auto"
-    style="padding-bottom: 100px; padding-top: 100px"
+    style="
+      padding-bottom: 100px;
+      padding-top: 100px;
+      display: flex;
+      align-items: center;
+    "
   >
     <v-col
       order="0"
