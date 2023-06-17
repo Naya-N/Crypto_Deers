@@ -1,6 +1,10 @@
 <template>
   <v-app v-resize="onResize">
-    <HeaderComponent :tab="tab" @changeDisabled="changeDisabled" />
+    <HeaderComponent
+      :tab="tab"
+      @changeDisabled="changeDisabled"
+      @changeHeaderHeight="changeHeader"
+    />
     <v-main style="background: #1e1e1e">
       <v-container
         style="height: 100%"
@@ -33,7 +37,7 @@
               : calculateStyle
           "
         >
-          <component :is="`Section${num}`" :tab="tab" />
+          <component :is="`Section${num}`" :tab="tab" :padding="headerSizeY" />
           <FooterComponent v-if="num === 4" />
         </section>
       </v-container>
@@ -77,6 +81,7 @@ export default {
       x: 0,
       y: 0,
     },
+    headerSizeY: 0,
     tab: 0,
     arr: [],
     disabledCalculateTab: false,
@@ -89,8 +94,8 @@ export default {
 
     calculateStyle() {
       return this.windowSize.x > 1020 && this.windowSize.y > 750
-        ? 'min-height: 100dvh; display: flex; align-items: center;'
-        : 'min-height: 100dvh;';
+        ? `min-height: 100dvh; height:100dvh; display: flex; align-items: center;`
+        : `min-height: 100dvh;  display: flex; align-items: center;`;
     },
   },
   methods: {
@@ -147,8 +152,11 @@ export default {
       }
     },
     changeDisabled(val) {
-      this.disabledCalculateTab = true
-      this.tab = val
+      this.disabledCalculateTab = true;
+      this.tab = val;
+    },
+    changeHeader(val) {
+      this.headerSizeY = val;
     },
   },
 };
