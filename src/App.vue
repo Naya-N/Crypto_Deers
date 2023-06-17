@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapMutations } from 'vuex';
 import Section1 from './components/Section1';
 import Section2 from './components/Section2';
 import Section3 from './components/Section3';
@@ -90,8 +90,6 @@ export default {
     this.onResize();
   },
   computed: {
-    ...mapGetters(['GET_ACTIVE_ANIMATE']),
-
     calculateStyle() {
       return this.windowSize.x > 1020 && this.windowSize.y > 750
         ? `min-height: 100dvh; height:100dvh; display: flex; align-items: center;`

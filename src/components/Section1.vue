@@ -1,9 +1,9 @@
 <template>
   <div
-    style="display: flex; align-items: center; align-self: end"
+    style="display: flex; align-items: center; align-self: end; width: 100%"
     class="mx-auto"
     :style="
-      $vuetify.breakpoint.smAndUp
+      $vuetify.breakpoint.smAndUp && GET_WINDOW_SIZE.y > 600
         ? `height: calc(100dvh - ${padding}px)`
         : `height: calc(100% + ${padding}px); padding-top: ${padding}px`
     "
@@ -85,7 +85,7 @@
         style="display: flex; justify-content: center; flex-direction: column"
       >
         <div style="max-width: 650px">
-          <h1 class="display-2 mb-10" style="font-weight: 600" itemprop="name">
+          <h1 class="mb-10 display-2" style="font-weight: 600" itemprop="name">
             Welcome to Crypto_Deers
           </h1>
 
