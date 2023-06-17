@@ -1,5 +1,6 @@
 <template>
   <v-app-bar
+    id="header"
     fixed
     dark
     shrink-on-scroll
@@ -85,6 +86,9 @@ export default {
   computed: {
     ...mapGetters(['GET_WINDOW_SIZE']),
   },
+  mounted() {
+    this.observeHeight();
+  },
   methods: {
     scrollToSection(name) {
       this.$emit('changeDisabled', +name.slice(-1) - 1);
@@ -93,6 +97,14 @@ export default {
         behavior: 'smooth',
         block: 'start',
       });
+    },
+
+    observeHeight() {
+      const resizeObserver = new ResizeObserver((v) => {
+        this.$emit('changeHeaderHeight', Math.floor(v[0].contentRect.height));
+      });
+
+      resizeObserver.observe(document.getElementById('header'));
     },
   },
 };
